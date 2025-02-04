@@ -1,6 +1,8 @@
 # Recovery of Causal Graph Involving Latent Variables via Homologous Surrogates
 
-This repository is the official implementation of [Recovery of Causal Graph Involving Latent Variables via Homologous Surrogates].
+[![Paper](https://img.shields.io/badge/paper-ICLR-green)]()
+
+This repository is the official implementation of [Recovery of Causal Graph Involving Latent Variables via Homologous Surrogates] (ICLR 2025).
 
 ## Usage
 
