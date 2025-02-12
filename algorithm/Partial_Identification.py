@@ -5,6 +5,10 @@ import pandas as pd
 from utils import correlation, independence, cum31, cum22, pr
 
 
+def support(input, threshold=1e-2):
+    return np.abs(input) > threshold
+
+
 class Partial_Identification():
     
     def __init__(self, data):
@@ -79,7 +83,7 @@ class Partial_Identification():
             return root_indices
         true_root_indices = []
         for root in root_indices:
-            num_ancestors = [np.sum(np.abs(self.M[i, len(self.O):]) > 1e-6) for i in root]
+            num_ancestors = [np.sum(support(self.M[i, len(self.O):])) for i in root]
             min_value = min(num_ancestors)
             true_root_indices.append([i for i, num in zip(root, num_ancestors) if num == min_value])
         return true_root_indices # each element is a list, comprising all HSu of a same latent root
@@ -153,7 +157,7 @@ class Partial_Identification():
         self.M = np.concatenate([self.M, np.zeros([num_latent, self.M.shape[1]])], axis=0)
         for i in range(num_observed, self.M.shape[1]-1):
             for j in range(i+1, self.M.shape[1]):
-                if np.all(np.abs(self.M[self.latent2homologous[j], i]) > 1e-6):
+                if np.all(support(self.M[self.latent2homologous[j], i])):
                     self.M[j, i] = 1.0
         for i in range(num_observed, self.M.shape[1]):
             self.M[i, i] = 1.0
