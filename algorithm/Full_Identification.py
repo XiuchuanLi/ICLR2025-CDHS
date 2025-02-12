@@ -3,7 +3,7 @@ from itertools import permutations
 import numpy as np
 import copy
 
-def support(input, threshold=1e-6):
+def support(input, threshold=1e-2):
     return np.abs(input) > threshold
 
 class Full_Identification():
