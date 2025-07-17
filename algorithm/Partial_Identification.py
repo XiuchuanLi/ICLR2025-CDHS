@@ -154,6 +154,8 @@ class Partial_Identification():
             if flag:
                 break
         num_observed, num_latent = len(self.O), self.M.shape[1] - len(self.O)
+        # The composition of self.M is slightly different from M in Eq. (5) in the paper.
+        # self.M = [M^O_O M^L_O; 0 M^L_L] here while M = [M^L_L 0; M^L_O M^O_O] in Eq. (5) in the paper.
         self.M = np.concatenate([self.M, np.zeros([num_latent, self.M.shape[1]])], axis=0)
         for i in range(num_observed, self.M.shape[1]-1):
             for j in range(i+1, self.M.shape[1]):
