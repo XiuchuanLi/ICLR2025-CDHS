@@ -11,7 +11,7 @@ class Full_Identification():
     def __init__(self, M, num_observed, num_latent):
         self.M_OO_initial = M[:num_observed, :num_observed]
         self.M_LL = M[num_observed:, num_observed:]
-        self.M_OL = np.linalg.inv(M[:num_observed, :num_observed]) @ M[:num_observed, num_observed:]
+        self.M_OL = np.linalg.inv(M[:num_observed, :num_observed]) @ M[:num_observed, num_observed:] # matrix form of Eq. (10) in the paper
         self.num_observed = num_observed
         self.num_latent = num_latent
 
